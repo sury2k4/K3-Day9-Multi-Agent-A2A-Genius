@@ -7,7 +7,7 @@ Hệ thống xử lý 50 case trong thư mục `input/`, điều tra order Olist
 thư mục `output/`.
 
 Kiến trúc sử dụng LangGraph để điều phối, PostgreSQL để lưu dữ liệu vận hành và
-trạng thái chạy, Langfuse để quan sát/ghi trace, và model Llama 3.1 8B Instruct
+trạng thái chạy, Langfuse Cloud để quan sát/ghi trace, và model Llama 3.1 8B Instruct
 thông qua OpenRouter cho việc suy luận của agent và tạo phần giải thích.
 
 Model không được phép tự tạo order event, payment, refund record, tracking
@@ -15,16 +15,22 @@ checkpoint hoặc evidence ID. Việc join dữ liệu, so sánh ngày giờ, t�
 dụng policy và kiểm tra evidence phải được thực hiện bằng logic xác định trong
 code để có thể kiểm chứng.
 
+Không sử dụng embedding model trong luồng xử lý chính. Dataset có khóa quan hệ
+và policy rõ ràng nên truy vấn chính xác bằng PostgreSQL phù hợp hơn semantic
+search; embedding chỉ có thể được bổ sung cho một tính năng tìm kiếm tài liệu
+không ảnh hưởng đến quyết định refund.
+
 ## 2. Công nghệ và triển khai
 
 | Thành phần | Trách nhiệm |
 | --- | --- |
 | Python application | Đọc case, chạy LangGraph, kiểm tra kết quả và ghi file output |
-| LangGraph | Điều phối coordinator, các nhánh điều tra song song, quyết định policy, verification và vòng sửa lỗi |
+| LangGraph | Điều phối coordinator, các nhánh điều tra song song, policy engine, verification và vòng sửa format |
 | OpenRouter | Cổng gọi model `meta-llama/llama-3.1-8b-instruct` (Llama 3.1 8B Instruct) |
 | PostgreSQL | Lưu dữ liệu Olist đã chuẩn hóa, case, handoff giữa agent, trạng thái chạy và kết quả đã kiểm tra |
-| Langfuse | Ghi một trace cho mỗi case và observation cho từng graph node/agent |
-| Docker Compose | Chạy application và PostgreSQL cùng nhau; endpoint Langfuse có thể là local hoặc hosted và được cấu hình qua biến môi trường |
+| Langfuse Cloud | Ghi một trace cho mỗi case và observation cho từng graph node/agent |
+| Docker Compose | Chạy application và PostgreSQL cùng nhau; gửi trace đến Langfuse Cloud qua biến môi trường |
+| `logging/` | Lưu metadata và trace của lần chạy mới nhất |
 
 Tất cả agent sử dụng model có tối đa 10B parameters. Tên model phải được khai
 báo trong source code và `metadata.json`; secret chỉ được truyền qua `.env` và
@@ -57,9 +63,10 @@ flowchart LR
                 PaymentAgent[Agent Payment]
                 DeliveryAgent[Agent Giao hàng]
                 Join[Gộp evidence]
-                Policy[Agent Policy]
+                PolicyEngine[Policy Engine xác định]
+                Policy[Agent Policy / giải thích]
                 Verify[Agent Verifier]
-                Repair[Sửa lỗi có giới hạn]
+                Repair[Sửa format có giới hạn]
                 Writer[Ghi output]
 
                 Coordinator --> OrderAgent
@@ -68,7 +75,7 @@ flowchart LR
                 OrderAgent --> Join
                 PaymentAgent --> Join
                 DeliveryAgent --> Join
-                Join --> Policy --> Verify
+                Join --> PolicyEngine --> Policy --> Verify
                 Verify -->|không hợp lệ| Repair --> Verify
                 Verify -->|hợp lệ| Writer
             end
@@ -82,7 +89,7 @@ flowchart LR
     subgraph External[Dịch vụ bên ngoài]
         OpenRouter[OpenRouter]
         Llama[Llama 3.1 8B Instruct]
-        Langfuse[Langfuse]
+        Langfuse[Langfuse Cloud]
     end
 
     CSV --> Ingest
@@ -101,10 +108,9 @@ flowchart LR
 ```
 
 Ba agent domain đọc dữ liệu từ PostgreSQL theo các nhánh song song. Các handoff
-được gộp tại node `Evidence Join`; sau đó policy và verification chạy tuần tự.
-Model được dùng cho suy luận của agent và quyết định có cấu trúc, còn truy vấn dữ
-liệu nguồn, tính tiền và kiểm tra policy vẫn là các thao tác có thể kiểm chứng
-bằng code.
+được gộp tại node `Evidence Join`, sau đó `Policy Engine` áp dụng rule bằng code.
+`Policy Agent` chỉ tạo explanation và candidate output có cấu trúc dựa trên quyết
+định đã được kiểm chứng. Model không tự quyết định refund, root cause hoặc evidence.
 
 ## 3. Luồng xử lý tổng quát
 
@@ -118,22 +124,25 @@ flowchart TD
     D1 --> E[Gộp evidence]
     D2 --> E
     D3 --> E
-    E --> F[Agent Policy]
-    F --> G[Agent Verifier]
-    G -->|hợp lệ| H[Ghi output]
-    G -->|không hợp lệ, còn lượt sửa| I[Node sửa lỗi]
-    I --> G
-    G -->|không thể sửa| J[Fallback xác định / ghi lỗi]
-    H --> K[output/EC_NNN.json]
-    C -. trace .-> L[Langfuse]
-    D1 -. trace .-> L
-    D2 -. trace .-> L
-    D3 -. trace .-> L
-    F -. trace .-> L
-    G -. trace .-> L
+    E --> F[Policy Engine xác định]
+    F --> G[Agent Policy / giải thích]
+    G --> H[Agent Verifier]
+    H -->|hợp lệ| I[Ghi output]
+    H -->|không hợp lệ, còn lượt sửa| J[Node sửa format]
+    J --> H
+    H -->|không thể sửa| K[Fallback hợp lệ theo source]
+    I --> L[output/EC_NNN.json]
+    K --> L
+    C -. trace .-> M[Langfuse Cloud]
+    D1 -. trace .-> M
+    D2 -. trace .-> M
+    D3 -. trace .-> M
+    F -. trace .-> M
+    G -. trace .-> M
+    H -. trace .-> M
 ```
 
-Mỗi case có một lần chạy LangGraph và một trace Langfuse riêng. Ba agent domain
+Mỗi case có một lần chạy LangGraph và một trace Langfuse Cloud riêng. Ba agent domain
 là các nhánh độc lập, chỉ đọc dữ liệu và có thể chạy song song. Coordinator gộp
 các report có cấu trúc trước khi chuyển sang bước áp dụng policy.
 
@@ -170,15 +179,17 @@ giải lại một đoạn chat không có cấu trúc.
    biến cho các nhánh Order/Seller, Payment và Delivery.
 3. **Các agent domain → Evidence Join**: trả về fact, source key, tổng tiền đã
    tính và kết luận của domain.
-4. **Evidence Join → Policy Agent**: cung cấp fact đã gộp và các reference đã
-   kiểm tra để áp dụng `EC_POLICY_V1`.
-5. **Policy Agent → Verifier**: cung cấp candidate output đầy đủ, gồm issue,
+4. **Evidence Join → Policy Engine**: cung cấp fact đã gộp và các reference đã
+   kiểm tra để áp dụng `EC_POLICY_V1` bằng code xác định.
+5. **Policy Engine → Policy Agent**: cung cấp quyết định policy, số tiền và
+   evidence đã được kiểm chứng để agent tạo explanation và candidate output.
+6. **Policy Agent → Verifier**: cung cấp candidate output đầy đủ, gồm issue,
    responsible parties, evidence IDs, các giá trị tiền, confidence và actions.
-6. **Verifier → Output Writer**: chỉ cho phép ghi file sau khi schema, evidence,
+7. **Verifier → Output Writer**: chỉ cho phép ghi file sau khi schema, evidence,
    policy, giới hạn và phép tính tài chính đều hợp lệ.
-7. **Verifier → Repair Node**: trả về lỗi validation cụ thể cho một lần sửa có
-   giới hạn. Repair node chỉ được sửa format hoặc reasoning dựa trên fact có sẵn,
-   không được tạo evidence mới.
+8. **Verifier → Repair Node**: trả về lỗi validation cụ thể cho một lần sửa có
+   giới hạn. Repair node chỉ được sửa JSON/schema/format dựa trên fact có sẵn,
+   không được thay đổi policy decision hoặc tạo evidence mới.
 
 ## 5. Trách nhiệm và quyền truy cập của từng agent
 
@@ -190,9 +201,10 @@ giải lại một đoạn chat không có cấu trúc.
 | Payment Agent | `order_payments`, `order_items` | Các payment row, tổng payment, đối soát item + freight và fact về split payment | Không ghi vào source data |
 | Delivery Agent | `orders`, `order_items` | Ngày giao, ngày dự kiến, shipping limit và fact phân loại giao trễ | Không ghi vào source data |
 | Evidence Join | Report của các domain agent | Fact bundle thống nhất và evidence candidate đã loại trùng | Không ghi vào source data |
-| Policy Agent | Fact bundle và `EC_POLICY_V1` | Cause được xếp hạng, responsible party, refund, action, confidence và candidate output | Chỉ ghi candidate vào run state |
+| Policy Engine | Fact bundle và `EC_POLICY_V1` | Policy decision, root cause, responsible party, refund, action và evidence dựa trên code | Chỉ ghi decision vào run state |
+| Policy Agent | Fact bundle và policy decision đã kiểm chứng | Explanation và candidate output có cấu trúc | Chỉ ghi candidate vào run state |
 | Verifier Agent | Candidate output, domain report, source row trong PostgreSQL | Report pass/fail và hướng dẫn sửa cụ thể | Validation status |
-| Repair Node | Candidate output và lỗi của Verifier | Candidate đã sửa dựa trên fact có sẵn | Chưa ghi kết quả cuối |
+| Repair Node | Candidate output và lỗi của Verifier | Candidate đã sửa schema/format dựa trên fact có sẵn | Chưa ghi kết quả cuối |
 | Output Writer | Candidate đã hợp lệ | JSON cuối cùng | `output/EC_NNN.json` và result record |
 
 Các agent chỉ có quyền đọc các bảng source Olist. Application chỉ được ghi vào
@@ -239,8 +251,10 @@ Quy tắc truy vấn quan trọng:
 
 ## 7. Logic quyết định policy
 
-Policy Agent áp dụng các rule theo thứ tự dưới đây. Tất cả khoản tiền được làm
-tròn 2 chữ số thập phân; sai số cho đối soát payment là `0.10 BRL`.
+`Policy Engine` áp dụng các rule bằng code theo thứ tự dưới đây. `Policy Agent`
+chỉ tạo explanation và candidate output dựa trên quyết định đã được kiểm chứng.
+Tất cả khoản tiền được làm tròn 2 chữ số thập phân; sai số cho đối soát payment
+là `0.10 BRL`.
 
 | Ưu tiên | Điều kiện | Bên chịu trách nhiệm | Refund | Action | Root cause |
 | ---: | --- | --- | ---: | --- | --- |
@@ -274,10 +288,11 @@ Trước khi ghi kết quả, Verifier kiểm tra:
   dùng `no_action`.
 
 Nếu verification thất bại, repair loop chỉ nhận các check bị lỗi và fact có cấu
-trúc hiện có. Sau số lần sửa giới hạn, application ghi nhận lỗi và dùng fallback
-xác định dựa trên source để không âm thầm tạo evidence giả.
+trúc hiện có. Repair loop không được thay đổi quyết định policy. Sau số lần sửa
+giới hạn, application dùng fallback xác định dựa trên source để luôn tạo một JSON
+đầy đủ schema và hợp lệ; không ghi một error-only result thay cho output bắt buộc.
 
-## 9. Ghi trace bằng Langfuse
+## 9. Ghi trace bằng Langfuse Cloud
 
 Cấu trúc trace:
 
@@ -294,31 +309,53 @@ Trace: một trace cho mỗi case (case_id, run_id, order_id, policy_version)
 
 Mỗi observation lưu node name, model name, prompt/version ID, thời gian bắt đầu
 và kết thúc, trạng thái, kết quả validation và token/latency metadata nếu có.
-Không đưa API key hoặc secret vào trace. Run mới nhất cũng được export ra
-`trace.jsonl`; file này phải được ghi đè sau mỗi lần chạy 50 case, không append.
+Không đưa API key hoặc secret vào trace.
+
+Artifact runtime được lưu trong `logging/`:
+
+```text
+logging/trace.jsonl     -- trace của 50 case trong lần chạy mới nhất
+logging/metadata.json   -- model, parameter size, framework và runtime
+```
+
+Hai file trong `logging/` phải được ghi đè sau mỗi lần chạy 50 case, không append.
+Để đáp ứng yêu cầu nộp bài trong README, application phải đồng bộ bản sao cuối
+cùng ra root repo:
+
+```text
+trace.jsonl
+metadata.json
+```
+
+Hai bản root phải giống với artifact tương ứng trong `logging/`. `metadata.json`
+không được chứa API key hoặc secret.
+Langfuse được dùng qua Cloud API; `LANGFUSE_HOST`, public key và secret key chỉ
+được truyền qua `.env`.
 
 ## 10. Runtime Docker
 
 `docker-compose.yml` dự kiến gồm:
 
 ```text
-app       -- Python/LangGraph runner; mount data/, input/ và output/
+app       -- Python/LangGraph runner; mount data/, input/, output/ và logging/
 postgres  -- PostgreSQL có persistent volume cho dữ liệu Olist và run state
-langfuse  -- endpoint trace local hoặc hosted, cấu hình qua .env
+Langfuse Cloud -- dịch vụ bên ngoài, không chạy trong Docker Compose
 ```
 
 Application phải chờ PostgreSQL vượt qua health check trước khi ingestion hoặc xử
-lý case. Database credential, OpenRouter credential và Langfuse credential được
-inject qua `.env`; `.env` phải được Git ignore. Thư mục output được mount để có
-thể zip 50 JSON file từ máy host.
+lý case. Database credential, OpenRouter credential và Langfuse Cloud credential
+được inject qua `.env`; `.env` phải được Git ignore. Các thư mục output và logging
+được mount để lưu kết quả và artifact từ máy host.
 
 ## 11. Trình tự chạy để tái lập kết quả
 
 1. Khởi động PostgreSQL và các dependency của application bằng Docker Compose.
 2. Ingest hoặc kiểm tra 9 bảng CSV Olist trong PostgreSQL.
 3. Chạy LangGraph một lần cho `EC_001` đến `EC_050`.
-4. Export trace mới nhất có liên kết Langfuse ra `trace.jsonl`.
-5. Chạy Verifier trên toàn bộ 50 output file.
-6. Kiểm tra `output/` có đúng 50 JSON file bắt buộc.
-7. Commit source code và tài liệu bắt buộc ở root; khi nộp chỉ zip thư mục
+4. Export trace mới nhất có liên kết Langfuse ra `logging/trace.jsonl` và tạo
+   `logging/metadata.json`.
+5. Đồng bộ hai artifact từ `logging/` ra `trace.jsonl` và `metadata.json` ở root.
+6. Chạy Verifier trên toàn bộ 50 output file.
+7. Kiểm tra `output/` có đúng 50 JSON file bắt buộc.
+8. Commit source code và tài liệu bắt buộc ở root; khi nộp chỉ zip thư mục
    `output/`.
