@@ -1,0 +1,8 @@
+provider: OpenRouter
+model_id: qwen/qwen-2.5-7b-instruct
+parameter_count_b: 7.61
+model_family: Qwen2.5
+verified_source: https://huggingface.co/Qwen/Qwen2.5-7B-Instruct
+provider_page: https://openrouter.ai/qwen/qwen-2.5-7b-instruct
+verified_at: "2026-08-05"
+
