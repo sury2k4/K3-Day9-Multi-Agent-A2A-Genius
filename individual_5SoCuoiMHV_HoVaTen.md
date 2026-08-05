@@ -1,14 +1,13 @@
 # Báo cáo cá nhân — K3 Day 09: Multi-Agent A2A
 
-> Bổ sung họ tên, MSSV và lớp trước khi nộp. Phần kỹ thuật dưới đây phản ánh
-> pipeline thực tế của repository này.
+Phần kỹ thuật dưới đây phản ánh pipeline thực tế của repository này.
 
 ## 1. Thông tin cá nhân
 
 | Trường | Nội dung |
 | --- | --- |
-| Họ và tên | [Bổ sung họ và tên] |
-| MSSV | [Bổ sung MSSV] |
+| Họ và tên | Hoàng Quang Minh |
+| MSSV | 2A202601301 |
 | Khóa/Lớp | K3 / [Bổ sung lớp] |
 | Vai trò | Data/policy pipeline và verification |
 | Ngày hoàn thành | 2026-08-05 |
@@ -101,5 +100,5 @@ root lưu lại trace/metadata của đúng lần chạy mới nhất.
 - [x] Tôi đã chạy test và validator sau thay đổi.
 - [x] Tôi hiểu policy decision đến từ source data/code, không đến từ lời đoán của LLM.
 
-**Họ và tên:** [Bổ sung họ và tên]
+**Họ và tên:** Hoàng Quang Minh
 **Ngày xác nhận:** 2026-08-05
