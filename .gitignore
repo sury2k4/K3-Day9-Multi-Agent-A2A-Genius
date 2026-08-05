@@ -1,0 +1,28 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local databases and containers
+*.db
+postgres-data/
+
+# Generated case outputs are submitted separately as output.zip
+output/*.json
+output.zip
+
+# Required latest-run artifacts at repository root are intentionally tracked.
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store

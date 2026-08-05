@@ -1,0 +1,1317 @@
+{
+  "generated_at_utc": "2026-08-05T05:16:34+00:00",
+  "data_directory": "data",
+  "input_audit": {
+    "directory": "input",
+    "file_count": 50,
+    "case_ids": [
+      "EC_001",
+      "EC_002",
+      "EC_003",
+      "EC_004",
+      "EC_005",
+      "EC_006",
+      "EC_007",
+      "EC_008",
+      "EC_009",
+      "EC_010",
+      "EC_011",
+      "EC_012",
+      "EC_013",
+      "EC_014",
+      "EC_015",
+      "EC_016",
+      "EC_017",
+      "EC_018",
+      "EC_019",
+      "EC_020",
+      "EC_021",
+      "EC_022",
+      "EC_023",
+      "EC_024",
+      "EC_025",
+      "EC_026",
+      "EC_027",
+      "EC_028",
+      "EC_029",
+      "EC_030",
+      "EC_031",
+      "EC_032",
+      "EC_033",
+      "EC_034",
+      "EC_035",
+      "EC_036",
+      "EC_037",
+      "EC_038",
+      "EC_039",
+      "EC_040",
+      "EC_041",
+      "EC_042",
+      "EC_043",
+      "EC_044",
+      "EC_045",
+      "EC_046",
+      "EC_047",
+      "EC_048",
+      "EC_049",
+      "EC_050"
+    ],
+    "duplicate_case_ids": [],
+    "invalid_files": [],
+    "missing_official_batch": false
+  },
+  "tables": {
+    "olist_customers_dataset.csv": {
+      "file": "olist_customers_dataset.csv",
+      "exists": true,
+      "columns": [
+        "customer_id",
+        "customer_unique_id",
+        "customer_zip_code_prefix",
+        "customer_city",
+        "customer_state"
+      ],
+      "row_count": 99441,
+      "null_counts": {},
+      "duplicate_key": {
+        "fields": [
+          "customer_id"
+        ],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {},
+      "sample_rows": [
+        {
+          "customer_id": "06b8999e2fba1a1fbc88172c00ba8bc7",
+          "customer_unique_id": "861eff4711a542e4b93843c6dd7febb0",
+          "customer_zip_code_prefix": "14409",
+          "customer_city": "franca",
+          "customer_state": "SP"
+        },
+        {
+          "customer_id": "18955e83d337fd6b2def6b18a428ac77",
+          "customer_unique_id": "290c77bc529b7ac935b93aa66c333dc3",
+          "customer_zip_code_prefix": "09790",
+          "customer_city": "sao bernardo do campo",
+          "customer_state": "SP"
+        }
+      ]
+    },
+    "olist_geolocation_dataset.csv": {
+      "file": "olist_geolocation_dataset.csv",
+      "exists": true,
+      "columns": [
+        "geolocation_zip_code_prefix",
+        "geolocation_lat",
+        "geolocation_lng",
+        "geolocation_city",
+        "geolocation_state"
+      ],
+      "row_count": 1000163,
+      "null_counts": {},
+      "duplicate_key": {
+        "fields": [],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {},
+      "sample_rows": [
+        {
+          "geolocation_zip_code_prefix": "01037",
+          "geolocation_lat": "-23.54562128115268",
+          "geolocation_lng": "-46.63929204800168",
+          "geolocation_city": "sao paulo",
+          "geolocation_state": "SP"
+        },
+        {
+          "geolocation_zip_code_prefix": "01046",
+          "geolocation_lat": "-23.546081127035535",
+          "geolocation_lng": "-46.64482029837157",
+          "geolocation_city": "sao paulo",
+          "geolocation_state": "SP"
+        }
+      ]
+    },
+    "olist_order_items_dataset.csv": {
+      "file": "olist_order_items_dataset.csv",
+      "exists": true,
+      "columns": [
+        "order_id",
+        "order_item_id",
+        "product_id",
+        "seller_id",
+        "shipping_limit_date",
+        "price",
+        "freight_value"
+      ],
+      "row_count": 112650,
+      "null_counts": {},
+      "duplicate_key": {
+        "fields": [
+          "order_id",
+          "order_item_id"
+        ],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {
+        "shipping_limit_date": {
+          "min": "2016-09-19 00:15:34",
+          "max": "2020-04-09 22:35:08",
+          "invalid_count": 0
+        }
+      },
+      "sample_rows": [
+        {
+          "order_id": "00010242fe8c5a6d1ba2dd792cb16214",
+          "order_item_id": "1",
+          "product_id": "4244733e06e7ecb4970a6e2683c13e61",
+          "seller_id": "48436dade18ac8b2bce089ec2a041202",
+          "shipping_limit_date": "2017-09-19 09:45:35",
+          "price": "58.90",
+          "freight_value": "13.29"
+        },
+        {
+          "order_id": "00018f77f2f0320c557190d7a144bdd3",
+          "order_item_id": "1",
+          "product_id": "e5f2d52b802189ee658865ca93d83a8f",
+          "seller_id": "dd7ddc04e1b6c2c614352b383efe2d36",
+          "shipping_limit_date": "2017-05-03 11:05:13",
+          "price": "239.90",
+          "freight_value": "19.93"
+        }
+      ]
+    },
+    "olist_order_payments_dataset.csv": {
+      "file": "olist_order_payments_dataset.csv",
+      "exists": true,
+      "columns": [
+        "order_id",
+        "payment_sequential",
+        "payment_type",
+        "payment_installments",
+        "payment_value"
+      ],
+      "row_count": 103886,
+      "null_counts": {},
+      "duplicate_key": {
+        "fields": [
+          "order_id",
+          "payment_sequential"
+        ],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {},
+      "sample_rows": [
+        {
+          "order_id": "b81ef226f3fe1789b1e8b2acac839d17",
+          "payment_sequential": "1",
+          "payment_type": "credit_card",
+          "payment_installments": "8",
+          "payment_value": "99.33"
+        },
+        {
+          "order_id": "a9810da82917af2d9aefd1278f1dcfa0",
+          "payment_sequential": "1",
+          "payment_type": "credit_card",
+          "payment_installments": "1",
+          "payment_value": "24.39"
+        }
+      ]
+    },
+    "olist_order_reviews_dataset.csv": {
+      "file": "olist_order_reviews_dataset.csv",
+      "exists": true,
+      "columns": [
+        "review_id",
+        "order_id",
+        "review_score",
+        "review_comment_title",
+        "review_comment_message",
+        "review_creation_date",
+        "review_answer_timestamp"
+      ],
+      "row_count": 99224,
+      "null_counts": {
+        "review_comment_message": {
+          "count": 58274,
+          "rate": 0.587297
+        },
+        "review_comment_title": {
+          "count": 87658,
+          "rate": 0.883435
+        }
+      },
+      "duplicate_key": {
+        "fields": [
+          "review_id"
+        ],
+        "duplicate_row_count": 814,
+        "examples": [
+          {
+            "review_id": "3242cc306a9218d0377831e175d62fbf"
+          },
+          {
+            "review_id": "308316408775d1600dad81bd3184556d"
+          },
+          {
+            "review_id": "8ee90ac383cf825bb7f4756130d4e74a"
+          },
+          {
+            "review_id": "d433c252647c51309432ca0b763f969b"
+          },
+          {
+            "review_id": "03a6a25db577d0689440933055111897"
+          }
+        ]
+      },
+      "date_ranges": {
+        "review_answer_timestamp": {
+          "min": "2016-10-07 18:32:28",
+          "max": "2018-10-29 12:27:35",
+          "invalid_count": 0
+        },
+        "review_creation_date": {
+          "min": "2016-10-02 00:00:00",
+          "max": "2018-08-31 00:00:00",
+          "invalid_count": 0
+        }
+      },
+      "sample_rows": [
+        {
+          "review_id": "7bc2406110b926393aa56f80a40eba40",
+          "order_id": "73fc7af87114b39712e6da79b0a377eb",
+          "review_score": "4",
+          "review_comment_title": "",
+          "review_comment_message": "",
+          "review_creation_date": "2018-01-18 00:00:00",
+          "review_answer_timestamp": "2018-01-18 21:46:59"
+        },
+        {
+          "review_id": "80e641a11e56f04c1ad469d5645fdfde",
+          "order_id": "a548910a1c6147796b98fdf73dbeba33",
+          "review_score": "5",
+          "review_comment_title": "",
+          "review_comment_message": "",
+          "review_creation_date": "2018-03-10 00:00:00",
+          "review_answer_timestamp": "2018-03-11 03:05:13"
+        }
+      ]
+    },
+    "olist_orders_dataset.csv": {
+      "file": "olist_orders_dataset.csv",
+      "exists": true,
+      "columns": [
+        "order_id",
+        "customer_id",
+        "order_status",
+        "order_purchase_timestamp",
+        "order_approved_at",
+        "order_delivered_carrier_date",
+        "order_delivered_customer_date",
+        "order_estimated_delivery_date"
+      ],
+      "row_count": 99441,
+      "null_counts": {
+        "order_approved_at": {
+          "count": 160,
+          "rate": 0.001609
+        },
+        "order_delivered_carrier_date": {
+          "count": 1783,
+          "rate": 0.01793
+        },
+        "order_delivered_customer_date": {
+          "count": 2965,
+          "rate": 0.029817
+        }
+      },
+      "duplicate_key": {
+        "fields": [
+          "order_id"
+        ],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {
+        "order_delivered_carrier_date": {
+          "min": "2016-10-08 10:34:01",
+          "max": "2018-09-11 19:48:28",
+          "invalid_count": 0
+        },
+        "order_delivered_customer_date": {
+          "min": "2016-10-11 13:46:32",
+          "max": "2018-10-17 13:22:46",
+          "invalid_count": 0
+        },
+        "order_estimated_delivery_date": {
+          "min": "2016-09-30 00:00:00",
+          "max": "2018-11-12 00:00:00",
+          "invalid_count": 0
+        },
+        "order_purchase_timestamp": {
+          "min": "2016-09-04 21:15:19",
+          "max": "2018-10-17 17:30:18",
+          "invalid_count": 0
+        }
+      },
+      "sample_rows": [
+        {
+          "order_id": "e481f51cbdc54678b7cc49136f2d6af7",
+          "customer_id": "9ef432eb6251297304e76186b10a928d",
+          "order_status": "delivered",
+          "order_purchase_timestamp": "2017-10-02 10:56:33",
+          "order_approved_at": "2017-10-02 11:07:15",
+          "order_delivered_carrier_date": "2017-10-04 19:55:00",
+          "order_delivered_customer_date": "2017-10-10 21:25:13",
+          "order_estimated_delivery_date": "2017-10-18 00:00:00"
+        },
+        {
+          "order_id": "53cdb2fc8bc7dce0b6741e2150273451",
+          "customer_id": "b0830fb4747a6c6d20dea0b8c802d7ef",
+          "order_status": "delivered",
+          "order_purchase_timestamp": "2018-07-24 20:41:37",
+          "order_approved_at": "2018-07-26 03:24:27",
+          "order_delivered_carrier_date": "2018-07-26 14:31:00",
+          "order_delivered_customer_date": "2018-08-07 15:27:45",
+          "order_estimated_delivery_date": "2018-08-13 00:00:00"
+        }
+      ]
+    },
+    "olist_products_dataset.csv": {
+      "file": "olist_products_dataset.csv",
+      "exists": true,
+      "columns": [
+        "product_id",
+        "product_category_name",
+        "product_name_lenght",
+        "product_description_lenght",
+        "product_photos_qty",
+        "product_weight_g",
+        "product_length_cm",
+        "product_height_cm",
+        "product_width_cm"
+      ],
+      "row_count": 32951,
+      "null_counts": {
+        "product_category_name": {
+          "count": 610,
+          "rate": 0.018512
+        },
+        "product_description_lenght": {
+          "count": 610,
+          "rate": 0.018512
+        },
+        "product_height_cm": {
+          "count": 2,
+          "rate": 6.1e-05
+        },
+        "product_length_cm": {
+          "count": 2,
+          "rate": 6.1e-05
+        },
+        "product_name_lenght": {
+          "count": 610,
+          "rate": 0.018512
+        },
+        "product_photos_qty": {
+          "count": 610,
+          "rate": 0.018512
+        },
+        "product_weight_g": {
+          "count": 2,
+          "rate": 6.1e-05
+        },
+        "product_width_cm": {
+          "count": 2,
+          "rate": 6.1e-05
+        }
+      },
+      "duplicate_key": {
+        "fields": [
+          "product_id"
+        ],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {},
+      "sample_rows": [
+        {
+          "product_id": "1e9e8ef04dbcff4541ed26657ea517e5",
+          "product_category_name": "perfumaria",
+          "product_name_lenght": "40",
+          "product_description_lenght": "287",
+          "product_photos_qty": "1",
+          "product_weight_g": "225",
+          "product_length_cm": "16",
+          "product_height_cm": "10",
+          "product_width_cm": "14"
+        },
+        {
+          "product_id": "3aa071139cb16b67ca9e5dea641aaa2f",
+          "product_category_name": "artes",
+          "product_name_lenght": "44",
+          "product_description_lenght": "276",
+          "product_photos_qty": "1",
+          "product_weight_g": "1000",
+          "product_length_cm": "30",
+          "product_height_cm": "18",
+          "product_width_cm": "20"
+        }
+      ]
+    },
+    "olist_sellers_dataset.csv": {
+      "file": "olist_sellers_dataset.csv",
+      "exists": true,
+      "columns": [
+        "seller_id",
+        "seller_zip_code_prefix",
+        "seller_city",
+        "seller_state"
+      ],
+      "row_count": 3095,
+      "null_counts": {},
+      "duplicate_key": {
+        "fields": [
+          "seller_id"
+        ],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {},
+      "sample_rows": [
+        {
+          "seller_id": "3442f8959a84dea7ee197c632cb2df15",
+          "seller_zip_code_prefix": "13023",
+          "seller_city": "campinas",
+          "seller_state": "SP"
+        },
+        {
+          "seller_id": "d1b65fc7debc3361ea86b5f14c68d2e2",
+          "seller_zip_code_prefix": "13844",
+          "seller_city": "mogi guacu",
+          "seller_state": "SP"
+        }
+      ]
+    },
+    "product_category_name_translation.csv": {
+      "file": "product_category_name_translation.csv",
+      "exists": true,
+      "columns": [
+        "product_category_name",
+        "product_category_name_english"
+      ],
+      "row_count": 71,
+      "null_counts": {},
+      "duplicate_key": {
+        "fields": [
+          "product_category_name"
+        ],
+        "duplicate_row_count": 0,
+        "examples": []
+      },
+      "date_ranges": {},
+      "sample_rows": [
+        {
+          "product_category_name": "beleza_saude",
+          "product_category_name_english": "health_beauty"
+        },
+        {
+          "product_category_name": "informatica_acessorios",
+          "product_category_name_english": "computers_accessories"
+        }
+      ]
+    }
+  },
+  "catalog_counts": {
+    "customers": 99441,
+    "customer_unique_ids": 96096,
+    "products": 32951,
+    "sellers": 3095,
+    "geolocation_zip_prefixes": 19015,
+    "geolocation_rows_with_zip": 1000163
+  },
+  "order_status_distribution": {
+    "delivered": 96478,
+    "invoiced": 314,
+    "shipped": 1107,
+    "processing": 301,
+    "unavailable": 609,
+    "canceled": 625,
+    "created": 5,
+    "approved": 2
+  },
+  "status_payment_counts": {
+    "delivered": 96477,
+    "invoiced": 314,
+    "shipped": 1107,
+    "processing": 301,
+    "unavailable": 609,
+    "canceled": 622,
+    "created": 5,
+    "approved": 2
+  },
+  "status_payment_totals_brl": {
+    "delivered": 15422461.77,
+    "invoiced": 69137.99,
+    "shipped": 177213.96,
+    "processing": 69394.11,
+    "unavailable": 126479.51,
+    "canceled": 143255.6,
+    "created": 688.1,
+    "approved": 241.08
+  },
+  "relationship_integrity": {
+    "orders": 99441,
+    "orders_with_items": 98666,
+    "orders_without_items": 775,
+    "orders_with_payments": 99440,
+    "orders_without_payments": 1,
+    "orders_with_reviews": 98673,
+    "orders_with_multiple_sellers": 1278,
+    "orders_with_multiple_payment_rows": 2961,
+    "orders_with_multiple_reviews": 547,
+    "customer_unique_ids_with_multiple_customer_ids": 2997,
+    "foreign_key_violation_examples": {
+      "items": {
+        "order_missing": [],
+        "seller_missing": [],
+        "product_missing": []
+      },
+      "payments": {
+        "order_missing": []
+      },
+      "orders": {
+        "customer_missing": []
+      }
+    }
+  },
+  "relationship_distributions": {
+    "items_per_order": {
+      "summary": {
+        "count": 99441,
+        "min": 0.0,
+        "max": 21.0,
+        "mean": 1.1328,
+        "median": 1.0,
+        "p90": 1.0,
+        "p95": 2.0,
+        "p99": 3.0
+      },
+      "buckets": {
+        "0": 775,
+        "1": 88863,
+        "2": 7516,
+        "3-5": 2031,
+        "6-10": 239,
+        ">10": 17
+      }
+    },
+    "payment_rows_per_order": {
+      "summary": {
+        "count": 99441,
+        "min": 0.0,
+        "max": 29.0,
+        "mean": 1.0447,
+        "median": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 2.0
+      },
+      "buckets": {
+        "0": 1,
+        "1": 96479,
+        "2": 2382,
+        "3-5": 461,
+        "6-10": 89,
+        ">10": 29
+      }
+    },
+    "sellers_per_order": {
+      "summary": {
+        "count": 99441,
+        "min": 0.0,
+        "max": 5.0,
+        "mean": 1.0057,
+        "median": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 2.0
+      },
+      "buckets": {
+        "0": 775,
+        "1": 97388,
+        "2": 1219,
+        "3-5": 59,
+        "6-10": 0,
+        ">10": 0
+      }
+    },
+    "reviews_per_order": {
+      "summary": {
+        "count": 99441,
+        "min": 0.0,
+        "max": 3.0,
+        "mean": 0.9978,
+        "median": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "buckets": {
+        "0": 768,
+        "1": 98126,
+        "2": 543,
+        "3-5": 4,
+        "6-10": 0,
+        ">10": 0
+      }
+    }
+  },
+  "payment_analysis": {
+    "payment_type_distribution": {
+      "credit_card": 76795,
+      "boleto": 19784,
+      "voucher": 5775,
+      "debit_card": 1529,
+      "not_defined": 3
+    },
+    "reconciliation_counts": {
+      "matched_within_0.10": 98409,
+      "mismatch_over_0.10": 1031,
+      "no_payment_rows": 1
+    },
+    "reconciliation_difference_brl": {
+      "count": 99440,
+      "min": -51.62,
+      "max": 3782.19,
+      "mean": 1.6639,
+      "median": 0.0,
+      "p90": 0,
+      "p95": 0,
+      "p99": 1.6327
+    },
+    "largest_mismatch_examples": [
+      {
+        "order_id": "e5882de2409ffb5a26782367e95b91ba",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 1384.73,
+        "difference_brl": 1384.73,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "00a500bc03bc4ec968e574c2553bed4b",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 555.99,
+        "difference_brl": 555.99,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "0a472c47d928bf4cd8b6a7a30345eeb7",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 490.99,
+        "difference_brl": 490.99,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "50bb0c134ee3365dd06e13da6cda15fe",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 258.0,
+        "difference_brl": 258.0,
+        "payment_rows": 2
+      },
+      {
+        "order_id": "c12a72f72509bcc1317ee119c5ade35b",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 163.19,
+        "difference_brl": 163.19,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "2636a02ee7de9590df86a4c24b739c49",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 142.09,
+        "difference_brl": 142.09,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "52dfaf3e430903d40571c0eb44d324b5",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 123.44,
+        "difference_brl": 123.44,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "aaf3ed5d59c660ed5b94eb2dd4103ea0",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 100.0,
+        "difference_brl": 100.0,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "295f0c892077fab482adb25cfc37aa79",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 92.99,
+        "difference_brl": 92.99,
+        "payment_rows": 1
+      },
+      {
+        "order_id": "32b5ca23bd0b8761a4e3c0fb0b4b4418",
+        "item_total_brl": 0.0,
+        "freight_total_brl": 0.0,
+        "payment_total_brl": 91.97,
+        "difference_brl": 91.97,
+        "payment_rows": 1
+      }
+    ],
+    "aggregate_item_total_brl": 13591643.7,
+    "aggregate_freight_total_brl": 2251909.54,
+    "aggregate_payment_total_brl": 16008872.12
+  },
+  "delivery_analysis": {
+    "delivery_outcomes": {
+      "on_time": 88649,
+      "unknown": 2965,
+      "late": 7827
+    },
+    "delivery_delay_days": {
+      "count": 96476,
+      "min": -146.0161226851852,
+      "max": 188.97508101851852,
+      "mean": -11.1791,
+      "median": -11.9489,
+      "p90": -1.1375,
+      "p95": 3.8185,
+      "p99": 18.9393
+    },
+    "carrier_minus_shipping_limit_days": {
+      "count": 111456,
+      "min": -1054.2445254629629,
+      "max": 116.76256944444444,
+      "mean": -3.3235,
+      "median": -3.2131,
+      "p90": -0.0649,
+      "p95": 0.8917,
+      "p99": 7.5437
+    },
+    "missing_date_fields": {
+      "delivered_customer_date": 2965,
+      "delivered_carrier_date": 1783
+    },
+    "delivered_status_missing_dates": {
+      "order_delivered_customer_date": 8,
+      "order_delivered_carrier_date": 2,
+      "order_estimated_delivery_date": 0
+    },
+    "non_delivered_orders_with_customer_delivery_date": 6,
+    "seller_handoff_item_comparisons": 111456,
+    "seller_handoff_late_item_comparisons": 10423,
+    "orders_with_late_seller": 8861,
+    "orders_with_multiple_late_sellers": 52,
+    "multiple_late_seller_examples": {
+      "bf4072fdc2122c74befd6df427938cab": [
+        "070d165398b553f3b4b851c216b8a358",
+        "fa1a9dec3a9940c072684a46728bf1fc"
+      ],
+      "f9a4431b06162517b2bc2fbaf8f9645a": [
+        "1f867308a0ce13133a4e639ff4de0c02",
+        "b19f3ca2ea475913750f25a5c37c8d8f"
+      ],
+      "383aa8b2724fe452d9ccd9934a8c628b": [
+        "1554a68530182680ad5c8b042c3ab563",
+        "31344c16881c08a8a72c6d2eb29918c1"
+      ],
+      "dceb62e8fa94b46006c9554fed743df0": [
+        "da8622b14eb17ae2831f4ac5b9dab84a",
+        "e9d99831abad74458942f21e16f33f92"
+      ],
+      "f6cf807a05566571a2781deb6a223094": [
+        "2138ccb85b11a4ec1e37afbd1c8eda1f",
+        "db4350fd57ae30082dec7acbaacc17f9"
+      ],
+      "fb5e71b90bc82484e81d1c9d076a4ec3": [
+        "a17f621c590ea0fab3d5d883e1630ec6",
+        "d05ae8f7a5bd1d2a690a44cd079e4e27"
+      ],
+      "b27af682321527a6349f1761eb3f360c": [
+        "43a5d4a57af536fddc96d08be3afdfcb",
+        "86ccac0b835037332a596a33b6949ee1"
+      ],
+      "9183e2fd9515c57925a0251ccfc21c63": [
+        "41b39e28db005d9731d9d485a83b4c38",
+        "92eb0f42c21942b6552362b9b114707d"
+      ],
+      "2ea42a9244db919209a5b414c749a085": [
+        "0ea22c1cfbdc755f86b9b54b39c16043",
+        "bb5bd94c8f59cc050072d2930c869cac"
+      ],
+      "1929b9b60df702da58751db8fb70145a": [
+        "1c129092bf23f28a5930387c980c0dfc",
+        "972d0f9cf61b499a4812cf0bfa3ad3c4"
+      ],
+      "28f0558838bcded1adf9bd48f1bdc457": [
+        "35ef5aa32949680f627efec3c23e705c",
+        "d66c305afaec317ebee552073a674429"
+      ],
+      "fa3e37584f4fdb1ded0e0de700dfcb4e": [
+        "53e4c6e0f4312d4d2107a8c9cddf45cd",
+        "d12c926d74ceff0a90a21184466ce161"
+      ],
+      "d12750a4a29395c6d1cd3a83992f1e16": [
+        "1c68394e931a64f90ea236c5ea590300",
+        "88460e8ebdecbfecb5f9601833981930"
+      ],
+      "45c00baf33a1d544fb774dc8dac7e09b": [
+        "4a3ca9315b744ce9f8e9374361493884",
+        "8160255418d5aaa7dbdc9f4c64ebda44"
+      ],
+      "df56136b8031ecd28e200bb18e6ddb2e": [
+        "4da0e408c99d2fdc2126dc9fce518060",
+        "834f8533b2ecb6598dd004ff3de7203a"
+      ],
+      "a13562e9c4b0eb8e6ae0946073b213f8": [
+        "2b3e4a2a3ea8e01938cabda2a3e5cc79",
+        "d03698c2efd04a549382afa6623e27fb"
+      ],
+      "b9b288cdc42a600d0a460dcb92865e4e": [
+        "8e6d7754bc7e0f22c96d255ebda59eba",
+        "9c0e69c7bf2619675bbadf47b43f655a"
+      ],
+      "c1e2bf2b7dd3309f2f5356c6b63968fa": [
+        "8a87611c08849ffeeccab52aa798b6c7",
+        "d50d79cb34e38265a8649c383dcffd48"
+      ],
+      "bb0053cdec4b5850b4682e029eb3347f": [
+        "391fc6631aebcf3004804e51b40bcf1e",
+        "cca3071e3e9bb7d12640c9fbe2301306"
+      ],
+      "1ef6133727cdcc029e9dbcb68ad5d57f": [
+        "1900267e848ceeba8fa32d80c1a5f5a8",
+        "8160255418d5aaa7dbdc9f4c64ebda44"
+      ],
+      "9f0663bf008ccdbfbd96ac9a31ba7442": [
+        "4a3ca9315b744ce9f8e9374361493884",
+        "cca3071e3e9bb7d12640c9fbe2301306"
+      ],
+      "05c163d46637e5c0c23a0075dc1c854c": [
+        "2138ccb85b11a4ec1e37afbd1c8eda1f",
+        "92eb0f42c21942b6552362b9b114707d"
+      ],
+      "780501d599a0f944ab933f5609e358f7": [
+        "5dceca129747e92ff8ef7a997dc4f8ca",
+        "b14db04aa7881970e83ffa9426897925"
+      ],
+      "29941903985f944b0ffc49c479c1547d": [
+        "06e5eefc71ec47ae763c5c6f8db7064f",
+        "218d46b86c1881d022bce9c68a7d4b15"
+      ],
+      "74c1ccaaf1d9e3db6f82ed04fc985989": [
+        "53e4c6e0f4312d4d2107a8c9cddf45cd",
+        "b14db04aa7881970e83ffa9426897925"
+      ],
+      "2fb37b5e58616af008e9835632fdce7c": [
+        "0ea22c1cfbdc755f86b9b54b39c16043",
+        "bb5bd94c8f59cc050072d2930c869cac"
+      ],
+      "7977e42154b045239288569dc9336adc": [
+        "1c129092bf23f28a5930387c980c0dfc",
+        "8160255418d5aaa7dbdc9f4c64ebda44"
+      ],
+      "7be469d9b115e2a08cf56be2d9250b8c": [
+        "1f50f920176fa81dab994f9023523100",
+        "ff063b022a9a0aab91bad2c9088760b7"
+      ],
+      "229177e71a4625bfd5c2d62ff385253b": [
+        "6d988d6174a2c27441597174f8905515",
+        "92eb0f42c21942b6552362b9b114707d"
+      ],
+      "fbffbaaa30f4077e87ec6acdb835b278": [
+        "37515688008a7a40ac93e3b2e4ab203f",
+        "70a12e78e608ac31179aea7f8422044b"
+      ],
+      "3b075cdef3ce549b7e7b8d6b4678ebd8": [
+        "4a3ca9315b744ce9f8e9374361493884",
+        "dc4a0fc896dc34b0d5bfec8438291c80"
+      ],
+      "e6b23db78d4473c921fb9315e04b5c0f": [
+        "c1d1ebb4745cc43cb6f05e9c8a705c9a",
+        "cac4c8e7b1ca6252d8f20b2fc1a2e4af"
+      ],
+      "6386b8aabb7f032b77475740cb035e86": [
+        "4d6d651bd7684af3fffabd5f08d12e5a",
+        "751bdc4d83a466c7206cd42e8f426b03"
+      ],
+      "d5558a097766363b8e76b38c43332e8a": [
+        "b56906f7fd1696e043f1bcce164c487b",
+        "e5a38146df062edaf55c38afa99e42dc"
+      ],
+      "771c4f1f521f462e4b95619e648aaeab": [
+        "1da366cade6d8276e7d8beea7af5d4bf",
+        "6e0908ef4d4efadbc3cc2b74ea477cb0"
+      ],
+      "1b0bc119ea5ac37e73e2275afc7904ee": [
+        "0873d9f8f36123f8d910f4760e788cfb",
+        "ec4608a1f76453166bb312b2968aeaf4"
+      ],
+      "ea1dcb4757a844d2642547797bd5feb0": [
+        "2089a6d640999f9b9141ac719b2af596",
+        "669ae81880e08f269a64487cfb287169"
+      ],
+      "7e3fefb35b0b1d765a343618ca5d454c": [
+        "1900267e848ceeba8fa32d80c1a5f5a8",
+        "41b39e28db005d9731d9d485a83b4c38"
+      ],
+      "1272198ea0829564b49fe8bb6ad3ea27": [
+        "53e4c6e0f4312d4d2107a8c9cddf45cd",
+        "f4aba7c0bca51484c30ab7bdc34bcdd1"
+      ],
+      "5943920d752512f211b074b874e73526": [
+        "3340ef1913fb70d28420f6ceb685c339",
+        "e9bc59e7b60fc3063eb2290deda4cced"
+      ],
+      "14b01335f19b97fce1437168032ae388": [
+        "0336182e1b3e92f029d5354832045fdf",
+        "184a67a8f9f63234d3a92340bbdb727f"
+      ],
+      "4552d969c2ffe2ac446b7a970e6953fc": [
+        "f8db351d8c4c4c22c6835c19a46f01b0",
+        "febab0275244b9a49a623f0bd613ca2f"
+      ],
+      "985f418428a2040e904e93491b78c1f1": [
+        "1025f0e2d44d7041d6cf58b6550e0bfa",
+        "b14db04aa7881970e83ffa9426897925"
+      ],
+      "804f733828d8587c734a1d8fc5634e06": [
+        "575df70bde3f9f2b30bf8d2e9910d725",
+        "8c3b533c63cca56240f94f1e3a6b18ef"
+      ],
+      "ed75cc8989121918832e0dcd3de3b3a7": [
+        "2f09f7d37a97956d11cc1a7cadd5262b",
+        "dd533b429f380718b70ad9922c294bae"
+      ],
+      "99ad48402644a3968f2481defdc57947": [
+        "2528513dd95219a6013d4d05176e391a",
+        "7722b1df1b0e383e000397b2c11e3e19"
+      ],
+      "c93a5ee8b79d80e391eba8a575bd4d1d": [
+        "b14db04aa7881970e83ffa9426897925",
+        "d20b021d3efdf267a402c402a48ea64b"
+      ],
+      "9937c97886894167e73d617373b4d91f": [
+        "25e6ffe976bd75618accfe16cefcbd0d",
+        "ab75b89cc49c9ab3160d0c91565a442a"
+      ],
+      "09854629eee79bc8d606247198ae822b": [
+        "25debeafbce801fdd479539350185eee",
+        "4d6d651bd7684af3fffabd5f08d12e5a"
+      ],
+      "fe6c4a42298295647106b42549a98eea": [
+        "dd7ddc04e1b6c2c614352b383efe2d36",
+        "fa1a9dec3a9940c072684a46728bf1fc"
+      ],
+      "95dc0bd3155ab8bbe4d5076ea9658805": [
+        "1f50f920176fa81dab994f9023523100",
+        "213b25e6f54661939f11710a6fddb871"
+      ],
+      "db840ba7f7a60faf5eff58723492dfe1": [
+        "3481aa57cd91f9f9d3fa1fa12d9a3bf7",
+        "86ccac0b835037332a596a33b6949ee1"
+      ]
+    },
+    "top_late_seller_item_counts": [
+      [
+        "7c67e1448b00f6e969d365cea6b010ab",
+        417
+      ],
+      [
+        "1025f0e2d44d7041d6cf58b6550e0bfa",
+        244
+      ],
+      [
+        "1f50f920176fa81dab994f9023523100",
+        217
+      ],
+      [
+        "4a3ca9315b744ce9f8e9374361493884",
+        169
+      ],
+      [
+        "88460e8ebdecbfecb5f9601833981930",
+        151
+      ],
+      [
+        "3d871de0142ce09b7081e2b9d1733cb1",
+        151
+      ],
+      [
+        "06a2c3af7b3aee5d69171b0e14f0ee87",
+        129
+      ],
+      [
+        "8160255418d5aaa7dbdc9f4c64ebda44",
+        123
+      ],
+      [
+        "4c2b230173bb36f9b240f2b8ac11786e",
+        119
+      ],
+      [
+        "53e4c6e0f4312d4d2107a8c9cddf45cd",
+        110
+      ],
+      [
+        "92eb0f42c21942b6552362b9b114707d",
+        94
+      ],
+      [
+        "ea8482cd71df3c1969d7b9473ff13abc",
+        92
+      ],
+      [
+        "7aa4334be125fcdd2ba64b3180029f14",
+        87
+      ],
+      [
+        "7d13fca15225358621be4086e1eb0964",
+        85
+      ],
+      [
+        "b2ba3715d723d245138f291a6fe42594",
+        85
+      ],
+      [
+        "37515688008a7a40ac93e3b2e4ab203f",
+        84
+      ],
+      [
+        "da8622b14eb17ae2831f4ac5b9dab84a",
+        77
+      ],
+      [
+        "c70c1b0d8ca86052f45a432a38b73958",
+        74
+      ],
+      [
+        "213b25e6f54661939f11710a6fddb871",
+        70
+      ],
+      [
+        "1ca7077d890b907f89be8c954a02686a",
+        70
+      ]
+    ]
+  },
+  "policy_candidate_analysis": {
+    "counts": {
+      "valid_split_payment": 2648,
+      "unsupported_late_claim": 85759,
+      "unclassified_missing_delivery_data": 1740,
+      "late_delivery_seller": 2128,
+      "late_delivery_logistics": 5697,
+      "unavailable_order_paid": 609,
+      "canceled_order_paid": 622,
+      "unclassified_no_applicable_rule": 238
+    },
+    "examples": {
+      "valid_split_payment": [
+        "e481f51cbdc54678b7cc49136f2d6af7",
+        "e69bfb5eb88e0ed6a785585b27e16dbf",
+        "83018ec114eee8641c97e08f7b4e926f",
+        "634e8f4c0f6744a626f77f39770ac6aa",
+        "f7959f8385f34c4f645327465a1c9fc4"
+      ],
+      "unsupported_late_claim": [
+        "53cdb2fc8bc7dce0b6741e2150273451",
+        "47770eb9100c2d0c44946d9cf07ec65d",
+        "949d5b44dbf5de918fe9c16f97b45f8a",
+        "ad21c59c0840e6cb83a9ceb5573f8159",
+        "a4591c265e18cb1dcee52889e2d8acc3"
+      ],
+      "unclassified_missing_delivery_data": [
+        "136cce7faa42fdb2cefd53fdc79a6098",
+        "ee64d42b8cf066f35eac1cf57de1aa85",
+        "0760a852e4e9d89eb77bf631eaaf1c84",
+        "15bed8e2fec7fdbadb186b57c46c92f2",
+        "6942b8da583c2f9957e990d028607019"
+      ],
+      "late_delivery_seller": [
+        "203096f03d82e0dffbc41ebc2e2bcfb7",
+        "6ea2f835b4556291ffdc53fa0b3b95e8",
+        "a685d016c8a26f71a0bb67821070e398",
+        "9d531c565e28c3e0d756192f84d8731f",
+        "fb9b2930f4a30f96c7cc98eaaa85e5f0"
+      ],
+      "late_delivery_logistics": [
+        "fbf9ac61453ac646ce8ad9783d7d0af6",
+        "8563039e855156e48fccee4d611a3196",
+        "66e4624ae69e7dc89bd50222b59f581f",
+        "6a0a8bfbbe700284feb0845d95e0867f",
+        "a5474c0071dd5d1074e12d417078bbd0"
+      ],
+      "unavailable_order_paid": [
+        "8e24261a7e58791d10cb1bf9da94df5c",
+        "c272bcd21c287498b4883c7512019702",
+        "37553832a3a89c9b2db59701c357ca67",
+        "d57e15fb07fd180f06ab3926b39edcd2",
+        "2f634e2cebf8c0283e7ef0989f77d217"
+      ],
+      "canceled_order_paid": [
+        "1b9ecfe83cdc259250e1a8aca174f0ad",
+        "714fb133a6730ab81fa1d3c1b2007291",
+        "3a129877493c8189c59c60eb71d97c29",
+        "ed3efbd3a87bea76c2812c66a0b32219",
+        "0966b61e30c4a07edbd7523f59b3f3e4"
+      ],
+      "unclassified_no_applicable_rule": [
+        "84d6d9710c8af32b5e88f2d1c14ab871",
+        "239f380355f65dcb68551f07d16fc4a8",
+        "4c57f545143e8865ca2347d8cba154a7",
+        "6e57e23ecac1ae881286657694444267",
+        "b38b3526b8b8fdc807e8a0a42ab78573"
+      ]
+    },
+    "official_rule_coverage_orders": 97463,
+    "total_orders": 99441
+  },
+  "sample_order_facts": {
+    "00010242fe8c5a6d1ba2dd792cb16214": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [
+        "48436dade18ac8b2bce089ec2a041202"
+      ],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 58.9,
+      "freight_total_brl": 13.29,
+      "payment_total_brl": 72.19,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "00018f77f2f0320c557190d7a144bdd3": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [
+        "dd7ddc04e1b6c2c614352b383efe2d36"
+      ],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 239.9,
+      "freight_total_brl": 19.93,
+      "payment_total_brl": 259.83,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "000229ec398224ef6ca0657da4fc703e": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 199.0,
+      "freight_total_brl": 17.87,
+      "payment_total_brl": 216.87,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "00024acbcdf0a6daa1e931b038114c75": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 12.99,
+      "freight_total_brl": 12.79,
+      "payment_total_brl": 25.78,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "00042b26cf59d7ce69dfabb4e55b4fd9": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [
+        "df560393f3a51e74553ab94004ba5c87"
+      ],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 199.9,
+      "freight_total_brl": 18.14,
+      "payment_total_brl": 218.04,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "00048cc3ae777c65dbb7d2a0634bc1ea": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 21.9,
+      "freight_total_brl": 12.69,
+      "payment_total_brl": 34.59,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "00054e8431b9d7675808bcb819fb4a32": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 19.9,
+      "freight_total_brl": 11.85,
+      "payment_total_brl": 31.75,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "000576fe39319847cbb9d288c5617fa6": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 810.0,
+      "freight_total_brl": 70.75,
+      "payment_total_brl": 880.75,
+      "policy_candidate": "unsupported_late_claim"
+    },
+    "0005a1a1728c9d785b8e2b08b904576c": {
+      "order_status": "delivered",
+      "delivery_outcome": "late",
+      "late_seller_ids": [
+        "a416b6a846a11724393025641d4edd5e"
+      ],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 145.95,
+      "freight_total_brl": 11.65,
+      "payment_total_brl": 157.6,
+      "policy_candidate": "late_delivery_seller"
+    },
+    "0005f50442cb953dcd1d21e1fb923495": {
+      "order_status": "delivered",
+      "delivery_outcome": "on_time",
+      "late_seller_ids": [],
+      "seller_handoff_comparable_item_count": 1,
+      "payment_rows": 1,
+      "payment_matches_within_0.10": true,
+      "item_total_brl": 53.99,
+      "freight_total_brl": 11.4,
+      "payment_total_brl": 65.39,
+      "policy_candidate": "unsupported_late_claim"
+    }
+  }
+}

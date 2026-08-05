@@ -166,6 +166,17 @@ Nếu order không có item row, `item_ids`, `seller_ids` để rỗng và `item
 
 Nén folder `output/` thành file zip. Zip phải chứa đúng 50 JSON từ `EC_001.json` đến `EC_050.json`; không chứa các file lạ khác
 
+Để giữ đúng đường dẫn của folder trong archive và tránh giữ file cũ, có thể tạo
+ZIP bằng:
+
+```bash
+rm -f output.zip
+zip -q output.zip output/EC_*.json
+```
+
+Archive hợp lệ có đúng 50 entry `output/EC_001.json` ... `output/EC_050.json`;
+không đưa `.gitkeep`, source code, `.env`, trace hoặc metadata vào ZIP.
+
 Điểm mỗi case là tổng có trọng số:
 
 | Thành phần                        | Trọng số |

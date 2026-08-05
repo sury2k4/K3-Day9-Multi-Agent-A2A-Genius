@@ -7,10 +7,10 @@ Hệ thống xử lý 50 case trong thư mục `input/`, điều tra order Olist
 thư mục `output/`.
 
 Kiến trúc sử dụng LangGraph để điều phối, PostgreSQL để lưu dữ liệu vận hành và
-trạng thái chạy, Langfuse Cloud để quan sát/ghi trace, và model Llama 3.1 8B Instruct
-thông qua OpenRouter cho việc suy luận của agent và tạo phần giải thích.
+trạng thái chạy, Langfuse Cloud để quan sát/ghi trace, và model Qwen3.5-9B
+thông qua OpenRouter để tạo phần giải thích không quyết định refund.
 
-Model không được phép tự tạo order event, payment, refund record, tracking
+Qwen không được phép tự tạo order event, payment, refund record, tracking
 checkpoint hoặc evidence ID. Việc join dữ liệu, so sánh ngày giờ, tính tiền, áp
 dụng policy và kiểm tra evidence phải được thực hiện bằng logic xác định trong
 code để có thể kiểm chứng.
@@ -26,7 +26,7 @@ không ảnh hưởng đến quyết định refund.
 | --- | --- |
 | Python application | Đọc case, chạy LangGraph, kiểm tra kết quả và ghi file output |
 | LangGraph | Điều phối coordinator, các nhánh điều tra song song, policy engine, verification và vòng sửa format |
-| OpenRouter | Cổng gọi model `meta-llama/llama-3.1-8b-instruct` (Llama 3.1 8B Instruct) |
+| OpenRouter | Cổng gọi model `qwen/qwen3.5-9b` cho Policy Explanation không quyết định refund |
 | PostgreSQL | Lưu dữ liệu Olist đã chuẩn hóa, case, handoff giữa agent, trạng thái chạy và kết quả đã kiểm tra |
 | Langfuse Cloud | Ghi một trace cho mỗi case và observation cho từng graph node/agent |
 | Docker Compose | Chạy application và PostgreSQL cùng nhau; gửi trace đến Langfuse Cloud qua biến môi trường |
@@ -88,7 +88,7 @@ flowchart LR
 
     subgraph External[Dịch vụ bên ngoài]
         OpenRouter[OpenRouter]
-        Llama[Llama 3.1 8B Instruct]
+        Qwen[Qwen3.5-9B]
         Langfuse[Langfuse Cloud]
     end
 
@@ -97,20 +97,17 @@ flowchart LR
     PG --> OrderAgent
     PG --> PaymentAgent
     PG --> DeliveryAgent
-    OpenRouter --> Llama
-    Llama -. gọi model .-> OrderAgent
-    Llama -. gọi model .-> PaymentAgent
-    Llama -. gọi model .-> DeliveryAgent
-    Llama -. gọi model .-> Policy
-    Llama -. gọi model .-> Repair
+    OpenRouter --> Qwen
+    Qwen -. gọi model .-> Policy
     Graph -. trace và metrics .-> Langfuse
     App -. DATABASE_URL, API keys .-> Env[.env / cấu hình]
 ```
 
 Ba agent domain đọc dữ liệu từ PostgreSQL theo các nhánh song song. Các handoff
 được gộp tại node `Evidence Join`, sau đó `Policy Engine` áp dụng rule bằng code.
-`Policy Agent` chỉ tạo explanation và candidate output có cấu trúc dựa trên quyết
-định đã được kiểm chứng. Model không tự quyết định refund, root cause hoặc evidence.
+`Policy Agent` có thể gọi Qwen để viết explanation ngắn; candidate output vẫn lấy
+từ quyết định đã được kiểm chứng. Nếu provider lỗi, explanation xác định trong
+code được dùng thay thế. Model không tự quyết định refund, root cause hoặc evidence.
 
 ## 3. Luồng xử lý tổng quát
 
@@ -159,6 +156,7 @@ order_id
 order_report
 payment_report
 delivery_report
+fact_bundle
 policy_decision
 verification_report
 repair_attempt
@@ -237,6 +235,27 @@ case_results       -- candidate đã kiểm tra và JSON cuối cùng
 trace_references   -- Langfuse trace ID và run metadata
 ```
 
+### Ràng buộc phát hiện từ dữ liệu thực tế
+
+Audit hiện tại trong `logging/data_analysis.md` ghi nhận:
+
+- 99.441 order và 112.650 item row; 775 order không có item row.
+- 103.886 payment row; 2.961 order có từ hai payment row trở lên và một order
+  không có payment row.
+- 1.278 order có nhiều seller; toàn bộ dataset có 52 order có nhiều seller cùng
+  bị đánh dấu bàn giao trễ. Policy engine phải trả về danh sách seller, không được
+  giả định mỗi order chỉ có một seller.
+- `review_id` bị trùng 814 row. Bảng `order_reviews` phải dùng khóa surrogate
+  (`review_row_id`) và index theo `order_id`, không được dùng `review_id` làm khóa
+  chính.
+- Geolocation có hơn một triệu row trên 19.015 zip prefix. Không join trực tiếp
+  raw geolocation vào order; phải aggregate theo zip prefix trước.
+- Có 1.031 order lệch payment so với item + freight quá 0.10 BRL. Mismatch này
+  không tự động tạo refund; chỉ các policy path được README định nghĩa mới được
+  áp dụng.
+- Thư mục `input/` hiện chưa có 50 case chính thức. Runner production phải fail
+  fast khi thiếu batch này, không tự tạo case từ Olist.
+
 Quy tắc truy vấn quan trọng:
 
 - Join `orders.order_id` với các row item và payment bằng `order_id`.
@@ -248,6 +267,8 @@ Quy tắc truy vấn quan trọng:
 - So sánh timestamp đúng theo giá trị trong CSV; không chuyển đổi timezone.
 - Nếu order không có item row, để rỗng các ID item/seller và đặt item total,
   freight total bằng `0.0`.
+- Không dùng `review_id` làm primary key; review chỉ là dữ liệu phụ trợ và không
+  được dùng làm căn cứ quyết định refund.
 
 ## 7. Logic quyết định policy
 
@@ -307,8 +328,10 @@ Trace: một trace cho mỗi case (case_id, run_id, order_id, policy_version)
   Span: output_writer
 ```
 
-Mỗi observation lưu node name, model name, prompt/version ID, thời gian bắt đầu
-và kết thúc, trạng thái, kết quả validation và token/latency metadata nếu có.
+Mỗi observation lưu node name, model name, framework, thời gian bắt đầu và kết
+thúc, trạng thái, kết quả validation và token/latency metadata nếu có. Chỉ
+`policy_agent` gọi Qwen; các agent domain, Policy Engine và Verifier đều xác
+định bằng source data/code.
 Không đưa API key hoặc secret vào trace.
 
 Artifact runtime được lưu trong `logging/`:

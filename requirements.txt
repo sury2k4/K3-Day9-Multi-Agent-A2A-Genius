@@ -1,0 +1,24 @@
+# Orchestration and model access
+langgraph>=0.2.34
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-openai>=0.2.0
+
+# Langfuse Cloud tracing
+langfuse>=2.50.0
+
+# Configuration and structured validation
+pydantic>=2.7.0
+pydantic-settings>=2.4.0
+python-dotenv>=1.0.1
+
+# PostgreSQL
+psycopg[binary]>=3.2.0
+
+# Data analysis
+pandas>=2.2.0
+
+# Development and verification
+pytest>=8.0.0
+pytest-cov>=5.0.0
+ruff>=0.8.0
