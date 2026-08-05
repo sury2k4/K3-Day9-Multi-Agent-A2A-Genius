@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_018",
+  "opened_at": "2018-08-13T14:37:00-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đặt rồi trả tiền rồi giờ hủy ngang xương, ai chịu trách nhiệm đây, hoàn tiền lẹ giùm.",
+    "claimed_order_id": "a9569e5470a944e2c8787ab08b6e26ed"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

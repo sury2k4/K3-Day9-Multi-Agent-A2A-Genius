@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_056",
+  "opened_at": "2017-04-11T23:44:00-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đơn báo không còn hàng nhưng tiền tôi đã bị trừ, sao kỳ vậy, mong xử lý sớm.",
+    "claimed_order_id": "31c6c41e2949f1a20c6f8e60ac17d4fe"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

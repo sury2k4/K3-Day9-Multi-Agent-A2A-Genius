@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_059",
+  "opened_at": "2018-07-02T21:51:38-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Tôi thấy tài khoản bị trừ tiền nhiều lần cho cùng một đơn hàng, xin kiểm tra giúp tôi có bị tính phí trùng không.",
+    "claimed_order_id": "6d34c087b843ae0fdb296f15d948e45f"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

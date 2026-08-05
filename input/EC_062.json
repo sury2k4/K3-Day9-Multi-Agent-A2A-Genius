@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_062",
+  "opened_at": "2017-04-23T14:34:08-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Vcl sao trừ tiền tôi nhiều lần vậy, tính gian à, kiểm tra lại ngay!!!",
+    "claimed_order_id": "6f4eebb5dd7d532cd45474ce133dc60a"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

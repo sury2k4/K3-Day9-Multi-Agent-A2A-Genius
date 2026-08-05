@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_027",
+  "opened_at": "2018-06-09T20:19:16-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đơn hàng trễ quá lâu rồi, chờ hoài không thấy, ai chịu trách nhiệm vậy?",
+    "claimed_order_id": "aa0829298e82fd9bce51e79edd33fb5e"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

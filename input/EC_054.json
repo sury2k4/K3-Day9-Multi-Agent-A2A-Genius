@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_054",
+  "opened_at": "2018-03-10T22:24:00-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Sản phẩm tôi đặt báo hết hàng/không xử lý được sau khi tôi đã trả tiền, mong được hoàn lại.",
+    "claimed_order_id": "d49363a0cc2a1915a5a11f85ea08ea48"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

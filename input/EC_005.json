@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_005",
+  "opened_at": "2017-08-18T06:31:36-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đợi nát cả ruột luôn á, hẹn giao ngày đó mà giờ vẫn chưa có, dẹp luôn cái kiểu làm ăn này.",
+    "claimed_order_id": "d416617c5fada61b01ff48ec39b4ca46"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

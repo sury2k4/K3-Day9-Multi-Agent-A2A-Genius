@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_063",
+  "opened_at": "2017-10-14T22:34:44-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Tôi đã chờ rất lâu nhưng vẫn chưa nhận được hàng so với ngày dự kiến, mong được kiểm tra.",
+    "claimed_order_id": "a323ac4955fc32f68997f8d0122ff2c1"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

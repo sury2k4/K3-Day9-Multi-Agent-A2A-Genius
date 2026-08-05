@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_089",
+  "opened_at": "2018-04-27T21:36:57-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Trễ vậy là sao??? Giao hàng như rùa bò, bực vãi, đền bù ngay cho tôi.",
+    "claimed_order_id": "0f6896ec061c74612b3a5ab4f2146d0e"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

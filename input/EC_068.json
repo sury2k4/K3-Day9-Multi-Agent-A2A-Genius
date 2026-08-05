@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_068",
+  "opened_at": "2018-02-08T06:59:56-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Vcl chờ cả tuần nay rồi mà hàng vẫn chưa tới, kiểu này chán vãi, ai chịu trách nhiệm đây??",
+    "claimed_order_id": "32864fe724c9f8e8040000b044c5c77a"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

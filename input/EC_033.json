@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_033",
+  "opened_at": "2018-04-20T12:33:34-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đéo hiểu shop với ship kiểu gì mà trễ lâu vậy, xử lý gấp đi, chờ hoài rồi đó.",
+    "claimed_order_id": "f5d98cac84d7a766c2615a4262585d81"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

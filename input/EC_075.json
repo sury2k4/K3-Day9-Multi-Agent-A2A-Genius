@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_075",
+  "opened_at": "2017-03-19T02:54:15-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Tự nhiên thấy trừ tiền nhiều đợt cho cùng 1 đơn hàng, hơi lo, nhờ kiểm tra lại giúp.",
+    "claimed_order_id": "a8f1a0a4af9a038ba340364a741a602a"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

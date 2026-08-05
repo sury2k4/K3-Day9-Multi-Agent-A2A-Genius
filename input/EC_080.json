@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_080",
+  "opened_at": "2017-08-18T09:28:12-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Sao kê của tôi có nhiều mục thanh toán cho cùng một đơn, xin xác nhận giúp tôi không bị tính thừa tiền.",
+    "claimed_order_id": "e71fb32bec49dd4112bcbcc19126d388"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

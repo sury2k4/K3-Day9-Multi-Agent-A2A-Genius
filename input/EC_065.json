@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_065",
+  "opened_at": "2018-09-05T06:13:40-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Giao hàng gì mà trễ dữ vậy, hẹn ngày này mà tới giờ chưa thấy đâu.",
+    "claimed_order_id": "aa9c455b2d9888927e1b006b22980c5e"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

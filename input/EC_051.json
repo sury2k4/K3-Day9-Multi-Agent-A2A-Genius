@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_051",
+  "opened_at": "2018-03-17T13:09:00-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Sao đơn của tôi bị hủy ngang mà tiền thì đã bị trừ, làm ăn kiểu gì vậy trời.",
+    "claimed_order_id": "2c0032906c603dcc21cd954828fa77d0"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

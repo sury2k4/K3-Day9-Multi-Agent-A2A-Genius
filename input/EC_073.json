@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_073",
+  "opened_at": "2017-07-28T21:13:01-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Hàng đến trễ so với ngày dự kiến trên đơn, nhờ kiểm tra xem tôi có được hoàn phí vận chuyển không.",
+    "claimed_order_id": "d03db25190f9915dd3f9df74b394f63f"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

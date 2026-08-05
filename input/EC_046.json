@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_046",
+  "opened_at": "2017-12-17T16:24:47-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đm giao hàng gì mà trễ dữ vậy, hẹn ngày này rồi mà giờ vẫn chưa thấy, làm ăn kiểu gì?!",
+    "claimed_order_id": "10758901b602fdec377ba3f189e531f5"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

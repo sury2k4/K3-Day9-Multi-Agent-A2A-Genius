@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_022",
+  "opened_at": "2018-03-03T19:32:19-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đơn hàng của tôi có nhiều giao dịch thanh toán khác nhau, tôi không chắc số tiền đã đúng chưa, nhờ đối soát lại.",
+    "claimed_order_id": "465c2e1bee4561cb39e0db8c5993aafc"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

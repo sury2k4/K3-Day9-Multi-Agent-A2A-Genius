@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_020",
+  "opened_at": "2017-03-22T22:55:57-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Trễ hẹn giao hàng rồi đó, tôi cần câu trả lời rõ ràng, đừng im lặng vậy.",
+    "claimed_order_id": "1310586c8caa5a7d84ef95db79b1e054"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

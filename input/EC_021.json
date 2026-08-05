@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_021",
+  "opened_at": "2018-09-14T11:46:49-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đơn hàng giao chậm hơn nhiều so với cam kết ban đầu, tôi muốn biết lý do và có được hỗ trợ gì không.",
+    "claimed_order_id": "8624511aa767a83ed91a47c158320964"
+  },
+  "policy_version": "EC_POLICY_V1"
+}

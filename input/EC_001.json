@@ -1,0 +1,10 @@
+{
+  "case_id": "EC_001",
+  "opened_at": "2018-03-04T18:50:00-03:00",
+  "customer_request": {
+    "language": "vi",
+    "message": "Đơn hàng tự nhiên bị hủy trong khi tiền đã trừ rồi, kiểu gì vậy? Yêu cầu hoàn tiền gấp cho tôi.",
+    "claimed_order_id": "3a129877493c8189c59c60eb71d97c29"
+  },
+  "policy_version": "EC_POLICY_V1"
+}
