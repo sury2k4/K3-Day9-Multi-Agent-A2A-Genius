@@ -1,0 +1,24 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Runtime data
+*.sqlite3
+*.db
+postgres-data/
+langfuse-data/
+*.zip
+
+# Local logs and generated output
+*.log

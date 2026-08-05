@@ -1,0 +1,69 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: olist
+      POSTGRES_PASSWORD: olist
+      POSTGRES_DB: olist_disputes
+    ports: ["5432:5432"]
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U olist -d olist_disputes"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build: .
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data:ro
+      - ./input:/app/input:ro
+      - ./output:/app/output
+      - ./trace.jsonl:/app/trace.jsonl
+      - ./metadata.json:/app/metadata.json
+
+  langfuse-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: langfuse
+      POSTGRES_PASSWORD: langfuse
+      POSTGRES_DB: langfuse
+    volumes: ["langfuse-db-data:/var/lib/postgresql/data"]
+
+  langfuse-clickhouse:
+    image: clickhouse/clickhouse-server:24.3
+    volumes: ["clickhouse-data:/var/lib/clickhouse"]
+
+  langfuse-minio:
+    image: minio/minio:RELEASE.2024-06-13T22-53-53Z
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: miniosecret
+    volumes: ["minio-data:/data"]
+
+  langfuse-redis:
+    image: redis:7-alpine
+
+  langfuse-web:
+    image: langfuse/langfuse:2
+    depends_on: [langfuse-db, langfuse-clickhouse, langfuse-minio, langfuse-redis]
+    ports: ["3000:3000"]
+    environment:
+      DATABASE_URL: postgresql://langfuse:langfuse@langfuse-db:5432/langfuse
+      NEXTAUTH_SECRET: local-development-secret-change-me
+      SALT: local-development-salt
+      NEXTAUTH_URL: http://localhost:3000
+      TELEMETRY_ENABLED: "false"
+
+volumes:
+  postgres-data:
+  langfuse-db-data:
+  clickhouse-data:
+  minio-data:
