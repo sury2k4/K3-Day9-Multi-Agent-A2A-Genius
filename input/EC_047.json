@@ -1,10 +1,10 @@
 {
   "case_id": "EC_047",
-  "opened_at": "2018-03-14T19:25:47-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Tôi thấy tài khoản bị trừ tiền nhiều lần cho cùng một đơn hàng, xin kiểm tra giúp tôi có bị tính phí trùng không.",
-    "claimed_order_id": "eac9a6eb5ffd533239d332b2171c7bcb"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "b04477ada8d2ad7fa9d95358baaa785d"
   },
   "policy_version": "EC_POLICY_V1"
 }

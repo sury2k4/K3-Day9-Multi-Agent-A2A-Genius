@@ -1,10 +1,10 @@
 {
   "case_id": "EC_029",
-  "opened_at": "2018-07-29T07:50:00-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Chán vãi, đặt hàng trả tiền đàng hoàng mà tự dưng hủy đơn, làm ăn như hạch, hoàn tiền ngay cho tôi.",
-    "claimed_order_id": "e95c2973b9be01bfe69bd4e1f33346fa"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "5c932e0a181410b67c77daaed30991af"
   },
   "policy_version": "EC_POLICY_V1"
 }

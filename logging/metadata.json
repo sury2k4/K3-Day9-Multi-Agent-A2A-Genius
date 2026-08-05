@@ -1,0 +1,20 @@
+{
+  "model": {
+    "name": "nvidia/nemotron-nano-9b-v2:free",
+    "parameter_size": "9B",
+    "provider": "OpenRouter"
+  },
+  "framework": "LangGraph",
+  "runtime": {
+    "python": "3.12.6",
+    "os": "win32"
+  },
+  "policy_version": "EC_POLICY_V1",
+  "run": {
+    "started_at": "2026-08-05T05:12:46.744569+00:00",
+    "elapsed_seconds": 20.5,
+    "cases_total": 50,
+    "cases_ok": 50,
+    "cases_error": 0
+  }
+}

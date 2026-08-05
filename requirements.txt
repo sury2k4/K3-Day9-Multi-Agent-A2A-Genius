@@ -1,0 +1,4 @@
+langgraph==1.2.10
+openai==2.53.0
+python-dotenv==1.2.1
+pandas==2.3.3

@@ -1,10 +1,10 @@
 {
   "case_id": "EC_009",
-  "opened_at": "2018-08-02T17:06:31-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Sao đơn này bị trừ tiền nhiều lần vậy, có nhầm lẫn gì không, kiểm tra giùm tôi.",
-    "claimed_order_id": "70a272d1c01754b91a8709ae7efe27be"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "3aaee056441dcae251f360b1c71a7279"
   },
   "policy_version": "EC_POLICY_V1"
 }

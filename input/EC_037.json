@@ -1,10 +1,10 @@
 {
   "case_id": "EC_037",
-  "opened_at": "2018-08-23T02:17:00-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Đặt rồi trả tiền rồi giờ hủy ngang xương, ai chịu trách nhiệm đây, hoàn tiền lẹ giùm.",
-    "claimed_order_id": "88a7f34793df2b92c81d02a09cec8e89"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "b90e46cdc30adec2f0fa041984341170"
   },
   "policy_version": "EC_POLICY_V1"
 }

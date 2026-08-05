@@ -1,10 +1,10 @@
 {
   "case_id": "EC_002",
-  "opened_at": "2017-04-07T18:28:46-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Vcl sao trừ tiền tôi nhiều lần vậy, tính gian à, kiểm tra lại ngay!!!",
-    "claimed_order_id": "0673ea591e7c9108ba7dc1a5246111a5"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "8067c5e4834f3c0a3c8a4e921d65c5b1"
   },
   "policy_version": "EC_POLICY_V1"
 }

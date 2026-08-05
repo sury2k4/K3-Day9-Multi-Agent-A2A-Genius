@@ -1,10 +1,10 @@
 {
   "case_id": "EC_017",
-  "opened_at": "2018-01-23T07:23:39-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Sao đơn này giao lâu quá vậy, quá ngày dự kiến rồi mà chưa thấy tăm hơi.",
-    "claimed_order_id": "98e84c5fef5422dde7fa1927c43adab0"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "dd6ee4d96f0f3cf1432c3b82818e0387"
   },
   "policy_version": "EC_POLICY_V1"
 }

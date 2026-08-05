@@ -1,10 +1,10 @@
 {
   "case_id": "EC_027",
-  "opened_at": "2018-06-09T20:19:16-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Đơn hàng trễ quá lâu rồi, chờ hoài không thấy, ai chịu trách nhiệm vậy?",
-    "claimed_order_id": "aa0829298e82fd9bce51e79edd33fb5e"
+    "message": "Đơn hàng không được hoàn tất dù tôi đã thanh toán. Hãy kiểm tra và đề xuất xử lý.",
+    "claimed_order_id": "2f346d92b11fcc7c342b3392b174cf3b"
   },
   "policy_version": "EC_POLICY_V1"
 }

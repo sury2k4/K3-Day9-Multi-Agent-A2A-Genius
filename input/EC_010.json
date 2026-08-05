@@ -1,10 +1,10 @@
 {
   "case_id": "EC_010",
-  "opened_at": "2018-01-07T21:37:59-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Đéo hiểu shop với ship kiểu gì mà trễ lâu vậy, xử lý gấp đi, chờ hoài rồi đó.",
-    "claimed_order_id": "512ba2efae3409f37660ce26199b32aa"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "3a119f52de09d1b2700815732def8b47"
   },
   "policy_version": "EC_POLICY_V1"
 }

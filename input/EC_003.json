@@ -1,10 +1,10 @@
 {
   "case_id": "EC_003",
-  "opened_at": "2017-10-10T05:28:04-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Giao hàng gì mà trễ dữ vậy, hẹn ngày này mà tới giờ chưa thấy đâu.",
-    "claimed_order_id": "80ec14a614e66dcd5fe4051fdeb620c9"
+    "message": "Đơn hàng không được hoàn tất dù tôi đã thanh toán. Hãy kiểm tra và đề xuất xử lý.",
+    "claimed_order_id": "71303d7e93b399f5bcd537d124c0bcfa"
   },
   "policy_version": "EC_POLICY_V1"
 }

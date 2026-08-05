@@ -1,10 +1,10 @@
 {
   "case_id": "EC_023",
-  "opened_at": "2018-03-12T06:23:00-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Hệ thống báo đơn đã hủy nhưng tôi vẫn chưa nhận được tiền hoàn, mong được xử lý sớm.",
-    "claimed_order_id": "3af427dfb9464cd660ac27292bb5d30b"
+    "message": "Tôi cho rằng đơn hàng được giao trễ. Hãy kiểm tra nguyên nhân và quyền lợi phù hợp.",
+    "claimed_order_id": "5fba7c57daf631028d2a584c52799e24"
   },
   "policy_version": "EC_POLICY_V1"
 }

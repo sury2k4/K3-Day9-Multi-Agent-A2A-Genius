@@ -1,10 +1,10 @@
 {
   "case_id": "EC_014",
-  "opened_at": "2018-08-20T06:31:00-03:00",
+  "opened_at": "2018-10-18T00:00:00-03:00",
   "customer_request": {
     "language": "vi",
-    "message": "Đơn hàng của tôi bị hủy nhưng tôi đã thanh toán trước đó, tôi muốn được hoàn lại tiền.",
-    "claimed_order_id": "0b16257b1b7ee0922ea03954f2cae85a"
+    "message": "Tôi thấy đơn hàng có nhiều dòng thanh toán và lo rằng mình bị thu trùng. Hãy đối soát giúp tôi.",
+    "claimed_order_id": "b93b079468bdf6a20fd54cf45d1e03b6"
   },
   "policy_version": "EC_POLICY_V1"
 }
